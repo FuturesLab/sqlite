@@ -1,3 +1,5 @@
+.target_source
+keywordhash.h
 .libs
 lemon.dSYM
 mkkeywordhash.dSYM
