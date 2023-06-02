@@ -3921,12 +3921,12 @@ EXTERN int Sqlite3_Init(Tcl_Interp *interp){
   int rc = Tcl_InitStubs(interp, "8.4", 0) ? TCL_OK : TCL_ERROR;
   if( rc==TCL_OK ){
     Tcl_CreateObjCommand(interp, "sqlite3", (Tcl_ObjCmdProc*)DbMain, 0, 0);
-#ifndef SQLITE_3_SUFFIX_ONLY
+if (getenv("SQLITE_3_SUFFIX_ONLY")){
     /* The "sqlite" alias is undocumented.  It is here only to support
     ** legacy scripts.  All new scripts should use only the "sqlite3"
     ** command. */
     Tcl_CreateObjCommand(interp, "sqlite", (Tcl_ObjCmdProc*)DbMain, 0, 0);
-#endif
+}
     rc = Tcl_PkgProvide(interp, "sqlite3", PACKAGE_VERSION);
   }
   return rc;
